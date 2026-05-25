@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  fst-gateway-service:
+    build:
+      context: ./fst-gateway-service
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./fst-gateway-service/.env.docker
+    networks:
+      - fast-network
+    depends_on:
+      - fst-auth-service
+      - fst-finance-service
+      - fst-analytics-service
+      - fst-aggregator-service
+
+  fst-auth-service:
+    build:
+      context: ./fst-auth-service
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./fst-auth-service/.env.docker
+    networks:
+      - fast-network
+
+  fst-aggregator-service:
+    build:
+      context: ./fst-aggregator-service
+    ports:
+      - "3002:3002"
+    env_file:
+      - ./fst-aggregator-service/.env.docker
+    networks:
+      - fast-network
+
+  fst-finance-service:
+    build:
+      context: ./fst-finance-service
+    ports:
+      - "3003:3003"
+    env_file:
+      - ./fst-finance-service/.env.docker
+    networks:
+      - fast-network
+    depends_on:
+      - fst-ai-service
+
+  fst-analytics-service:
+    build:
+      context: ./fst-analytics-service
+    ports:
+      - "3004:3004"
+    env_file:
+      - ./fst-analytics-service/.env.docker
+    networks:
+      - fast-network
+    depends_on:
+      - fst-ai-service
+
+  fst-ai-service:
+    build:
+      context: ./fst-ai-service
+    ports:
+      - "8001:8001"
+    networks:
+      - fast-network
+
+networks:
+  fast-network:
+    driver: bridge
