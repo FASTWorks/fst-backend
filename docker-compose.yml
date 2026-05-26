@@ -24,6 +24,8 @@ services:
       - ./fst-auth-service/.env.docker
     networks:
       - fast-network
+    depends_on:
+      - postgres-db
 
   fst-aggregator-service:
     build:
@@ -46,6 +48,7 @@ services:
       - fast-network
     depends_on:
       - fst-ai-service
+      - postgres-db
 
   fst-analytics-service:
     build:
@@ -58,6 +61,7 @@ services:
       - fast-network
     depends_on:
       - fst-ai-service
+      - postgres-db
 
   fst-ai-service:
     build:
@@ -67,6 +71,22 @@ services:
     networks:
       - fast-network
 
+  postgres-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sasa1234
+    ports:
+      - "5432:5432"
+    networks:
+      - fast-network
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+
 networks:
   fast-network:
     driver: bridge
+
+volumes:
+  postgres-data:
