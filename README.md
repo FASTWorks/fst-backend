@@ -46,10 +46,10 @@ Jika Anda sudah menginstal Docker Desktop, cara ini adalah yang paling mudah dan
 2. Pastikan posisi terminal berada di dalam direktori root `fst-backend` (atau `fast-backend`).
 3. Jalankan perintah ini:
    ```bash
-   docker-compose up -d --build
+   docker compose up -d --build
    ```
 4. **Selesai!** Tunggu proses *build* selesai. Semua layanan akan langsung berjalan aktif di latar belakang.
-5. **Cara Mematikannya:** Ketik `docker-compose down` di terminal.
+5. **Cara Mematikannya:** Ketik `docker compose down` di terminal.
 
 ---
 
