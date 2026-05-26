@@ -1,0 +1,27 @@
+[submodule "fst-aggregator-service"]
+	path = fst-aggregator-service
+	url = https://github.com/FASTWorks/fst-aggregator-service.git
+
+[submodule "fst-ai-model-and-api"]
+	path = fst-ai-model-and-api
+	url = https://github.com/FASTWorks/fst-ai-model-and-api.git
+
+[submodule "fst-ai-service"]
+	path = fst-ai-service
+	url = https://github.com/FASTWorks/fst-ai-service.git
+
+[submodule "fst-analytics-service"]
+	path = fst-analytics-service
+	url = https://github.com/FASTWorks/fst-analytics-service.git
+
+[submodule "fst-auth-service"]
+	path = fst-auth-service
+	url = https://github.com/FASTWorks/fst-auth-service.git
+
+[submodule "fst-finance-service"]
+	path = fst-finance-service
+	url = https://github.com/FASTWorks/fst-finance-service.git
+
+[submodule "fst-gateway-service"]
+	path = fst-gateway-service
+	url = https://github.com/FASTWorks/fst-gateway-service.git
