@@ -6,7 +6,9 @@
     "postinstall": "npm run install:all",
     "install:all": "npm install --prefix fst-gateway-service && npm install --prefix fst-auth-service && npm install --prefix fst-finance-service && npm install --prefix fst-analytics-service && npm install --prefix fst-aggregator-service",
     "ai:dev": "cd fst-ai-service && venv\\Scripts\\python -m uvicorn src.main:app --reload --port 8001",
-    "dev:all": "concurrently -n \"GATEWAY,AUTH,FINANCE,ANALYTIC,AGGREG,AI\" -c \"bgBlue.bold,bgMagenta.bold,bgYellow.bold,bgCyan.bold,bgGreen.bold,bgRed.bold\" \"npm run dev --prefix fst-gateway-service\" \"npm run dev --prefix fst-auth-service\" \"npm run dev --prefix fst-finance-service\" \"npm run dev --prefix fst-analytics-service\" \"npm run dev --prefix fst-aggregator-service\" \"npm run ai:dev\""
+    "ai:dev:nix": "cd fst-ai-service && ./venv/bin/python -m uvicorn src.main:app --reload --port 8001",
+    "dev:all": "concurrently -n \"GATEWAY,AUTH,FINANCE,ANALYTIC,AGGREG,AI\" -c \"bgBlue.bold,bgMagenta.bold,bgYellow.bold,bgCyan.bold,bgGreen.bold,bgRed.bold\" \"npm run dev --prefix fst-gateway-service\" \"npm run dev --prefix fst-auth-service\" \"npm run dev --prefix fst-finance-service\" \"npm run dev --prefix fst-analytics-service\" \"npm run dev --prefix fst-aggregator-service\" \"npm run ai:dev\"",
+    "dev:all:nix": "concurrently -n \"GATEWAY,AUTH,FINANCE,ANALYTIC,AGGREG,AI\" -c \"bgBlue.bold,bgMagenta.bold,bgYellow.bold,bgCyan.bold,bgGreen.bold,bgRed.bold\" \"npm run dev --prefix fst-gateway-service\" \"npm run dev --prefix fst-auth-service\" \"npm run dev --prefix fst-finance-service\" \"npm run dev --prefix fst-analytics-service\" \"npm run dev --prefix fst-aggregator-service\" \"npm run ai:dev:nix\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
