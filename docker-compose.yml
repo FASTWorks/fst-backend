@@ -68,6 +68,8 @@ services:
       context: ./fst-ai-service
     ports:
       - "8001:8001"
+    env_file:
+      - ./fst-ai-service/.env.docker
     networks:
       - fast-network
 
