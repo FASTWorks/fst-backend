@@ -29,7 +29,8 @@ services:
     networks:
       - fast-network
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
 
   fst-aggregator-service:
     build:
@@ -55,8 +56,10 @@ services:
     networks:
       - fast-network
     depends_on:
-      - fst-ai-service
-      - postgres-db
+      fst-ai-service:
+        condition: service_started
+      postgres-db:
+        condition: service_healthy
 
   fst-analytics-service:
     build:
@@ -70,8 +73,10 @@ services:
     networks:
       - fast-network
     depends_on:
-      - fst-ai-service
-      - postgres-db
+      fst-ai-service:
+        condition: service_started
+      postgres-db:
+        condition: service_healthy
 
   fst-ai-service:
     build:
@@ -98,6 +103,11 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 networks:
   fast-network:

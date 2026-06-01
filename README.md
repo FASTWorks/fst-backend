@@ -259,6 +259,15 @@ Setelah Anda menjalankan semua layanan (baik melalui Docker maupun Manual), Anda
 ### Q: Folder `node_modules` tidak terbuat otomatis setelah `npm install`?
 * **Solusi**: Anda dapat masuk ke folder layanan tersebut secara manual (misal: `cd fst-gateway-service`), lalu jalankan `npm install` langsung di dalam folder tersebut satu per satu.
 
+### Q: Error "The table `public.users` does not exist in the current database" saat menggunakan Docker?
+* **Penyebab**: Saat *clone* repo *fresh*, file migrasi Prisma mungkin belum terbentuk. Script bawaan mencoba menggunakan `migrate deploy` yang hanya bekerja jika ada file migrasi.
+* **Solusi Otomatis**: Kami telah mengupdate *script* peluncur. Pastikan `NODE_ENV=development` ada di `.env.docker` Anda agar sistem menggunakan mode `db push` otomatis.
+* **Solusi Manual**: Jika masih error, masuk ke dalam container dan push schema secara manual:
+  ```bash
+  docker compose exec fst-auth-service npx prisma db push --schema=src/prisma/schema.prisma
+  docker compose exec fst-finance-service npx prisma db push
+  ```
+
 ---
 
 Selamat berkolaborasi dan mengembangkan proyek! 🚀
