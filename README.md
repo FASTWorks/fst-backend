@@ -38,12 +38,18 @@ graph TD
 
 ## 🏗️ 1. Arsitektur Sistem & Port
 Proyek ini menggunakan arsitektur *microservices* terdistribusi yang terdiri dari 6 layanan mandiri:
-1. **Gateway Service** (Node.js/Express) - Port: `3000` (Gerbang API Utama)
-2. **Auth Service** (Node.js) - Port: `3001` (Autentikasi & Token)
-3. **Aggregator Service** (Node.js) - Port: `3002` (Penggabung Data Layanan)
-4. **Finance Service** (Node.js) - Port: `3003` (Layanan Transaksi & Keuangan)
-5. **Analytics Service** (Node.js) - Port: `3004` (Layanan Kalkulasi Statistik)
-6. **AI Service** (Python/FastAPI) - Port: `8001` (Mesin AI & Prediksi)
+1. **[Gateway Service](./fst-gateway-service)** (Node.js/Express) - Port: `3000` (Gerbang API Utama)
+   > *Berfungsi sebagai pintu masuk tunggal untuk seluruh permintaan API dari aplikasi Frontend. Menangani routing, load balancing sederhana, serta kebijakan CORS.*
+2. **[Auth Service](./fst-auth-service)** (Node.js) - Port: `3001` (Autentikasi & Token)
+   > *Menangani registrasi pengguna, login, reset kata sandi, verifikasi email OTP, serta penerbitan dan validasi token JWT untuk keamanan sesi.*
+3. **[Aggregator Service](./fst-aggregator-service)** (Node.js) - Port: `3002` (Penggabung Data Layanan)
+   > *Bertugas merangkum data dari berbagai service secara paralel (seperti dari Finance dan Analytics) untuk dikirimkan secara efisien ke Dashboard pengguna.*
+4. **[Finance Service](./fst-finance-service)** (Node.js) - Port: `3003` (Layanan Transaksi & Keuangan)
+   > *Merupakan jantung sistem yang mencatat arus kas: pemasukan, pengeluaran, alokasi anggaran bulanan, target tabungan, hingga riwayat struk.*
+5. **[Analytics Service](./fst-analytics-service)** (Node.js) - Port: `3004` (Layanan Kalkulasi Statistik)
+   > *Melakukan komputasi berat untuk statistik keuangan, seperti menghitung perbandingan Cashflow bulanan dan memberikan Skor Kesehatan Finansial.*
+6. **[AI Service](./fst-ai-service)** (Python/FastAPI) - Port: `8001` (Mesin AI & Prediksi)
+   > *Layanan kecerdasan buatan untuk membaca gambar struk belanja (OCR Receipt Parsing) dan memberikan wawasan/saran keuangan cerdas secara otomatis.*
 
 ---
 
