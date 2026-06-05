@@ -14,18 +14,18 @@ Berikut adalah gambaran aliran datanya:
 
 ```mermaid
 graph TD
-    Client[📱 Frontend / Client App] -->|HTTP Requests| Gateway[🚪 API Gateway Service]
+    Client[Frontend / Client App] -->|HTTP Requests| Gateway[API Gateway Service]
     
-    Gateway -->|Routing & Proxy| Auth[🔐 Auth Service]
-    Gateway -->|Routing & Proxy| Finance[💰 Finance Service]
-    Gateway -->|Routing & Proxy| Analytics[📊 Analytics Service]
-    Gateway -->|Routing & Proxy| Aggregator[📈 Aggregator Service]
+    Gateway -->|Routing & Proxy| Auth[Auth Service]
+    Gateway -->|Routing & Proxy| Finance[Finance Service]
+    Gateway -->|Routing & Proxy| Analytics[Analytics Service]
+    Gateway -->|Routing & Proxy| Aggregator[Aggregator Service]
     
     Aggregator -->|Internal Call| Auth
     Aggregator -->|Internal Call| Analytics
     Aggregator -->|Internal Call| Finance
     
-    Finance -->|OCR Analysis| AI[🧠 AI Service]
+    Finance -->|OCR Analysis| AI[AI Service]
     Analytics -->|Financial Insight| AI
     
     classDef default fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000;
