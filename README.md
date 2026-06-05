@@ -28,15 +28,10 @@ graph TD
     Finance -->|OCR Analysis| AI[🧠 AI Service]
     Analytics -->|Financial Insight| AI
     
-    classDef client fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef gateway fill:#bbf,stroke:#333,stroke-width:4px;
-    classDef core fill:#dfd,stroke:#333,stroke-width:2px;
-    classDef ai fill:#fdd,stroke:#333,stroke-width:2px;
+    classDef default fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000;
+    classDef gateway fill:#ffffff,stroke:#000000,stroke-width:4px,color:#000000;
     
-    class Client client;
     class Gateway gateway;
-    class Auth,Finance,Analytics,Aggregator core;
-    class AI ai;
 ```
 
 ---
