@@ -4,6 +4,43 @@ Selamat datang di repositori utama **FAST Backend**! Dokumentasi ini dirancang s
 
 ---
 
+## 🏗️ Arsitektur FAST Backend
+
+Aplikasi **FAST (Financial AI System Tracker)** mengadopsi pola arsitektur **Microservices**. Arsitektur ini membagi sistem ke dalam beberapa layanan (service) kecil yang berdiri sendiri, sehingga lebih mudah untuk dikembangkan, di- *maintain*, dan di- *scale* ke depannya. 
+
+Setiap permintaan (*request*) dari Frontend (Klien) akan selalu masuk melalui satu pintu utama, yaitu **API Gateway**. Gateway ini bertugas memverifikasi keamanan (*authentication*) dan meneruskan permintaan ke layanan-layanan spesifik yang ada di belakangnya. Beberapa layanan juga dapat saling berkomunikasi secara internal (misalnya Aggregator mengambil data dari Analytics dan Auth).
+
+Berikut adalah gambaran aliran datanya:
+
+```mermaid
+graph TD
+    Client[📱 Frontend / Client App] -->|HTTP Requests| Gateway[🚪 API Gateway Service]
+    
+    Gateway -->|Routing & Proxy| Auth[🔐 Auth Service]
+    Gateway -->|Routing & Proxy| Finance[💰 Finance Service]
+    Gateway -->|Routing & Proxy| Analytics[📊 Analytics Service]
+    Gateway -->|Routing & Proxy| Aggregator[📈 Aggregator Service]
+    
+    Aggregator -->|Internal Call| Auth
+    Aggregator -->|Internal Call| Analytics
+    Aggregator -->|Internal Call| Finance
+    
+    Finance -->|OCR Analysis| AI[🧠 AI Service]
+    Analytics -->|Financial Insight| AI
+    
+    classDef client fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef gateway fill:#bbf,stroke:#333,stroke-width:4px;
+    classDef core fill:#dfd,stroke:#333,stroke-width:2px;
+    classDef ai fill:#fdd,stroke:#333,stroke-width:2px;
+    
+    class Client client;
+    class Gateway gateway;
+    class Auth,Finance,Analytics,Aggregator core;
+    class AI ai;
+```
+
+---
+
 ## 🏗️ 1. Arsitektur Sistem & Port
 Proyek ini menggunakan arsitektur *microservices* terdistribusi yang terdiri dari 6 layanan mandiri:
 1. **Gateway Service** (Node.js/Express) - Port: `3000` (Gerbang API Utama)
